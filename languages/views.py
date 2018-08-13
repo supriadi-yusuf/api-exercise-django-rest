@@ -13,15 +13,16 @@ class LanguageView(viewsets.ModelViewSet):
     serializer_class = LanguageDetailSerializer
 
     def list(self, request):
-        #languages = Language.objects.all()
-
-        # spd : if the serializer does not contain serializers.HyperlinkedIdentityField
-        # we do not need serializer context to instantiate the serializer
-        #serializer = LanguageListSerializer( languages, many=True)
-
-        # spd : but if the serializer contains serializers.HyperlinkedIdentityField
-        # we need serializer context to instantiate the serializer
-        serializer = LanguageListSerializer( self.queryset, many=True, context = { 'request' : request})
+        languages = Language.objects.all()
+    #
+    #    # spd : if the serializer does not contain serializers.HyperlinkedIdentityField
+    #    # we do not need serializer context to instantiate the serializer
+    #    #serializer = LanguageListSerializer( languages, many=True)
+    #
+    #    # spd : but if the serializer contains serializers.HyperlinkedIdentityField
+    #    # we need serializer context to instantiate the serializer
+        #serializer = LanguageListSerializer( self.queryset, many=True, context = { 'request' : request})
+        serializer = LanguageListSerializer( languages, many=True, context = { 'request' : request})
 
         return Response( serializer.data)
 

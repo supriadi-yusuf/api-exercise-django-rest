@@ -13,6 +13,7 @@ class LanguageListSerializer(serializers.HyperlinkedModelSerializer):
         model = Language # spd : model that we want to convert into JSON format with this serializer
         # fields = [ 'id', 'name', 'paradigm'] # spd : fields that we want to display
         fields = [ 'id', 'url', 'name'] # spd : fields that we want to display
+        # fields = [ 'id', 'url', 'name', 'paradigm'] # spd : fields that we want to display
 
 class LanguageDetailSerializer(serializers.ModelSerializer):
 
