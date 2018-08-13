@@ -6,6 +6,8 @@ from . import views
 
 router = routers.DefaultRouter()
 router.register( 'bahasa', views.LanguageView)
+router.register( 'paradigma', views.ParadigmView)
+router.register( 'pemrogram', views.ProgrammerView)
 
 app_name = 'languages_app'
 

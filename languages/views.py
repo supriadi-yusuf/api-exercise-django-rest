@@ -2,8 +2,8 @@ from django.shortcuts import render
 
 # spd : import moduls, class that we need
 from rest_framework import viewsets
-from .models import Language
-from .serializers import LanguageListSerializer, LanguageDetailSerializer
+from .models import Language, Paradigm, Programmer
+from .serializers import LanguageListSerializer, LanguageDetailSerializer, ParadigmSerializer, ProgrammerSerializer
 from rest_framework.response import Response
 #from rest_framework.decorators import action
 
@@ -21,9 +21,9 @@ class LanguageView(viewsets.ModelViewSet):
     #
     #    # spd : but if the serializer contains serializers.HyperlinkedIdentityField
     #    # we need serializer context to instantiate the serializer
-        #serializer = LanguageListSerializer( self.queryset, many=True, context = { 'request' : request})
+    #    #serializer = LanguageListSerializer( self.queryset, many=True, context = { 'request' : request})
         serializer = LanguageListSerializer( languages, many=True, context = { 'request' : request})
-
+    #
         return Response( serializer.data)
 
     #def create(self, request):
@@ -42,3 +42,13 @@ class LanguageView(viewsets.ModelViewSet):
 
     #def destroy(self, request, pk=None):
     #    pass
+
+class ParadigmView(viewsets.ModelViewSet):
+
+    queryset = Paradigm.objects.all()
+    serializer_class = ParadigmSerializer
+
+class ProgrammerView(viewsets.ModelViewSet):
+
+    queryset = Programmer.objects.all()
+    serializer_class = ProgrammerSerializer
