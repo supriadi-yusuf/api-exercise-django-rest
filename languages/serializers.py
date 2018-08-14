@@ -37,13 +37,40 @@ class ParadigmSerializer(serializers.HyperlinkedModelSerializer):
         model = Paradigm
         fields = ('id', 'url', 'name')
 
+
+#class ProgrammerSerializer(serializers.ModelSerializer):
 class ProgrammerSerializer(serializers.HyperlinkedModelSerializer):
 
     url = serializers.HyperlinkedIdentityField( view_name='languages_app:programmer-detail')
     #languages = serializers.HyperlinkedRelatedField( many=True, read_only=True, view_name='languages_app:language-detail')
     languages = serializers.HyperlinkedRelatedField( many=True, queryset=Language.objects.all(),
      view_name='languages_app:language-detail')
+    #languages = serializers.StringRelatedField( many=True)
+    #languages = serializers.PrimaryKeyRelatedField( many=True, read_only=True)
+    #languages = serializers.PrimaryKeyRelatedField( many=True, queryset=Language.objects.all())
+    #languages = LanguageDetailSerializer( many=True, read_only=True)
 
     class Meta:
         model = Programmer
         fields = ( 'id', 'url', 'name', 'languages')
+
+
+'''
+class ProgrammerSerializer(serializers.ModelSerializer):
+#class ProgrammerSerializer(serializers.HyperlinkedModelSerializer):
+
+    url = serializers.HyperlinkedIdentityField( view_name='languages_app:programmer-detail')
+    languages = LanguageDetailSerializer( many=True)
+
+    class Meta:
+        model = Programmer
+        fields = ( 'id', 'url', 'name', 'languages')
+
+    def create(self, validated_data):
+        languages_data = validated_data.pop('languages')
+        programmer = Programmer.objects.create(**validated_data)
+        for language_data in languages_data:
+            Language.objects.create(programmer=programmer, **language_data)
+
+        return programmer
+'''
