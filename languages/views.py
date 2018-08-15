@@ -6,11 +6,16 @@ from .models import Language, Paradigm, Programmer
 from .serializers import LanguageListSerializer, LanguageDetailSerializer, ParadigmSerializer, ProgrammerSerializer
 from rest_framework.response import Response
 #from rest_framework.decorators import action
+from rest_framework import permissions #spd: need this modul for permissions
 
 # Create your views here.
 class LanguageView(viewsets.ModelViewSet):
     queryset = Language.objects.all()
     serializer_class = LanguageDetailSerializer
+    #permission_classes = (permissions.AllowAny,) #spd : set permission here
+    #permission_classes = (permissions.IsAuthenticated,) #spd : set permission here
+    #permission_classes = (permissions.IsAuthenticatedOrReadOnly,) #spd : set permission here
+    permission_classes = (permissions.IsAdminUser,) #spd : set permission here
 
     def list(self, request):
         languages = Language.objects.all()

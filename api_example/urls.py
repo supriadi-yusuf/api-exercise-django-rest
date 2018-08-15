@@ -19,4 +19,5 @@ from django.contrib import admin
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url('', include('languages.urls')),
+    url('api-auth/', include('rest_framework.urls')),#spd : display login/logout button
 ]
