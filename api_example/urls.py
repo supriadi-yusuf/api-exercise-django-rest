@@ -16,8 +16,16 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 
+#from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
+from rest_framework_simplejwt.views import (
+    TokenObtainPairView,
+    TokenRefreshView,
+    )
+
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url('', include('languages.urls')),
     url('api-auth/', include('rest_framework.urls')),#spd : display login/logout button
+    url('api/token/', TokenObtainPairView.as_view()),
+    url('api/token/refresh', TokenRefreshView.as_view()),
 ]

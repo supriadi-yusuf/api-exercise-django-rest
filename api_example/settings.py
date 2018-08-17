@@ -133,9 +133,14 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-#spd: setting default permission for rest framework
+#spd: setting for rest framework
 REST_FRAMEWORK = {
-    'DEFAULT_PERMISSION_CLASSES' : (
-        'rest_framework.permissions.IsAuthenticatedOrReadOnly',
-        )
+    'DEFAULT_PERMISSION_CLASSES' : ( #spd: setting default permission
+        #'rest_framework.permissions.AllowAny',
+        #'rest_framework.permissions.IsAuthenticatedOrReadOnly',
+        'rest_framework.permissions.IsAuthenticated',        
+        ),
+    'DEFAULT_AUTHENTICATION_CLASSES' : ( #spd: setting default authentication
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    )
 }
