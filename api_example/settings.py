@@ -136,9 +136,10 @@ STATIC_URL = '/static/'
 #spd: setting for rest framework
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES' : ( #spd: setting default permission
-        #'rest_framework.permissions.AllowAny',
+        'rest_framework.permissions.AllowAny',
         #'rest_framework.permissions.IsAuthenticatedOrReadOnly',
-        'rest_framework.permissions.IsAuthenticated',        
+        #'rest_framework.permissions.IsAuthenticated',
+        #'rest_framework.permissions.IsAdminUser',
         ),
     'DEFAULT_AUTHENTICATION_CLASSES' : ( #spd: setting default authentication
         'rest_framework_simplejwt.authentication.JWTAuthentication',
