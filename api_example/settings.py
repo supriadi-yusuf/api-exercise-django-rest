@@ -142,6 +142,7 @@ REST_FRAMEWORK = {
         #'rest_framework.permissions.IsAdminUser',
         ),
     'DEFAULT_AUTHENTICATION_CLASSES' : ( #spd: setting default authentication
-        'rest_framework_simplejwt.authentication.JWTAuthentication',
+        #'rest_framework_simplejwt.authentication.JWTAuthentication',
+        'supri_auth_perm.authentication.SupriAuthentication',
     )
 }
