@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     #spd. Register framework & apps
     'rest_framework',
+    #'django_filters',
     'languages.apps.LanguagesConfig',
 ]
 
@@ -142,7 +143,17 @@ REST_FRAMEWORK = {
         #'rest_framework.permissions.IsAdminUser',
         ),
     'DEFAULT_AUTHENTICATION_CLASSES' : ( #spd: setting default authentication
-        #'rest_framework_simplejwt.authentication.JWTAuthentication',
-        'supri_auth_perm.authentication.SupriAuthentication',
-    )
+    #    'rest_framework.authentication.BasicAuthentication',
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    #    'supri_auth_perm.authentication.SupriAuthentication',
+        ),
+    #'DEFAULT_FILTER_BACKENDS' : (
+    #    'django_filters.rest_framework.DjangoFilterBackend',
+    #    #'supri_auth_perm.filter.SupriFilter',
+    #    ),
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
+    #'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    #DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.CursorPagination',
+    'PAGE_SIZE': 2,
+
 }

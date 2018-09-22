@@ -7,7 +7,8 @@ class LanguageListSerializer(serializers.HyperlinkedModelSerializer):
     # spd : we need to put this line of code if we want to display url when name space is used in apps
     # spd : format for view_name is namespace:xxxx-detail
     # spd : in this case, name space is languages_app
-    url = serializers.HyperlinkedIdentityField(view_name='languages_app:language-detail')
+    #url = serializers.HyperlinkedIdentityField(view_name='languages_app:language-detail')
+    url = serializers.HyperlinkedIdentityField(view_name='languages_app:bahasaku-detail')
 
     class Meta:
         model = Language # spd : model that we want to convert into JSON format with this serializer
@@ -43,8 +44,8 @@ class ProgrammerSerializer(serializers.HyperlinkedModelSerializer):
 
     url = serializers.HyperlinkedIdentityField( view_name='languages_app:programmer-detail')
     #languages = serializers.HyperlinkedRelatedField( many=True, read_only=True, view_name='languages_app:language-detail')
-    languages = serializers.HyperlinkedRelatedField( many=True, queryset=Language.objects.all(),
-     view_name='languages_app:language-detail')
+    language = serializers.HyperlinkedRelatedField( many=True, queryset=Language.objects.all(),
+     view_name='languages_app:bahasaku-detail')
     #languages = serializers.StringRelatedField( many=True)
     #languages = serializers.PrimaryKeyRelatedField( many=True, read_only=True)
     #languages = serializers.PrimaryKeyRelatedField( many=True, queryset=Language.objects.all())
@@ -52,7 +53,7 @@ class ProgrammerSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = Programmer
-        fields = ( 'id', 'url', 'name', 'languages')
+        fields = ( 'id', 'url', 'name', 'language')
 
 
 '''
